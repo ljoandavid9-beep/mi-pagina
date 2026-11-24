@@ -1,1 +1,825 @@
-# mi-pagina
+# mi-pagina<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <title>Mi Aula · Proyectos escolares</title>
+  <style>
+    :root {
+      --ink: #1e302b;
+      --muted: #71807a;
+      --green: #246b53;
+      --pale: #e8f1eb;
+      --paper: #fffefa;
+      --line: #e8e8df;
+      --shadow: 0 18px 50px #25453612;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #f7f5ef;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .shell {
+      max-width: 1180px;
+      margin: auto;
+      padding: 28px 34px 60px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 38px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -.4px;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--green);
+      color: white;
+      font-size: 22px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #f2d6bd;
+      color: #754c32;
+      font-weight: 800;
+    }
+
+    .user-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+      padding: 38px 42px;
+      border-radius: 26px;
+      background: #eaf1e8;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .hero:after {
+      content: "✳";
+      position: absolute;
+      right: 24%;
+      top: -88px;
+      font-size: 260px;
+      line-height: 1;
+      color: #dce9dc;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 550px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.06;
+      letter-spacing: -1.5px;
+      margin: 12px 0;
+    }
+
+    .hero p {
+      color: #5d6c64;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 460px;
+    }
+
+    .hero-art {
+      position: relative;
+      z-index: 1;
+      width: 200px;
+      height: 160px;
+      display: grid;
+      place-items: center;
+      font-size: 90px;
+      transform: rotate(-7deg);
+    }
+
+    .actions {
+      display: flex;
+      gap: 11px;
+      margin-top: 23px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 17px;
+      font-weight: 750;
+      transition: .16s;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .primary {
+      background: var(--green);
+      color: white;
+      box-shadow: 0 7px 16px #246b5328;
+    }
+
+    .secondary {
+      background: white;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      margin: 30px 0 16px;
+    }
+
+    .section-head h2 {
+      font-size: 21px;
+      letter-spacing: -.5px;
+      margin: 0;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 5px 0 0;
+    }
+
+    .tools {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 11px;
+      padding: 10px 13px;
+      width: 220px;
+      outline: none;
+    }
+
+    .search:focus,
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #75a28d;
+      box-shadow: 0 0 0 3px #246b531a;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 19px;
+      box-shadow: 0 4px 18px #25453606;
+      min-height: 206px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .icon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #eff2e9;
+      font-size: 23px;
+    }
+
+    .tag {
+      font-size: 11px;
+      color: var(--green);
+      font-weight: 750;
+      background: var(--pale);
+      padding: 6px 9px;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      font-size: 17px;
+      margin: 17px 0 6px;
+      letter-spacing: -.3px;
+    }
+
+    .card p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+
+    .card-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      color: #8b9690;
+      font-size: 11px;
+    }
+
+    .dots {
+      border: 0;
+      background: none;
+      color: #819087;
+      font-size: 20px;
+    }
+
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 50px;
+      color: var(--muted);
+      background: var(--paper);
+      border-radius: 18px;
+      border: 1px dashed #ccd7ce;
+      grid-column: 1 / -1;
+    }
+
+    .share-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      background: #fffefa;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px 22px;
+      margin-top: 22px;
+    }
+
+    .share-copy {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .share-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      background: #fff0df;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+    }
+
+    .share-copy strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .share-copy span {
+      color: var(--muted);
+      font-size: 12px;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .code-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: 3px;
+      font-weight: 800;
+      color: var(--green);
+      background: #edf4ee;
+      padding: 11px 15px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .small {
+      padding: 10px 13px;
+      font-size: 12px;
+    }
+
+    .note {
+      font-size: 11px;
+      line-height: 1.5;
+      color: #849088;
+      margin: 14px 2px 0;
+    }
+
+    dialog {
+      border: 0;
+      border-radius: 20px;
+      padding: 0;
+      width: min(480px, calc(100% - 28px));
+      box-shadow: 0 24px 80px #13241d40;
+      color: var(--ink);
+    }
+
+    dialog::backdrop {
+      background: #18251f80;
+      backdrop-filter: blur(3px);
+    }
+
+    .modal { padding: 25px; }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+
+    .modal h2 {
+      font-size: 22px;
+      margin: 0 0 5px;
+    }
+
+    .modal-head p {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .close {
+      border: 0;
+      background: #f1f2ed;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      margin: 14px 0;
+    }
+
+    .field label {
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px 12px;
+      outline: none;
+      background: white;
+    }
+
+    .field textarea {
+      min-height: 84px;
+      resize: vertical;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: end;
+      gap: 9px;
+      margin-top: 20px;
+    }
+
+    .join-result {
+      display: none;
+      margin-top: 12px;
+      background: #eef5ef;
+      border-radius: 12px;
+      padding: 13px;
+      color: var(--green);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      pointer-events: none;
+      background: #203e32;
+      color: white;
+      border-radius: 30px;
+      padding: 12px 18px;
+      font-size: 13px;
+      transition: .2s;
+      box-shadow: var(--shadow);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 800px) {
+      .shell { padding: 20px 18px 40px; }
+      .hero { padding: 30px 27px; }
+      .hero-art { width: 130px; font-size: 70px; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .share-panel {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 560px) {
+      header { margin-bottom: 22px; }
+      .user-label { display: none; }
+      .hero { padding: 25px 22px; }
+      .hero-art { display: none; }
+      .actions { flex-wrap: wrap; }
+      .section-head { display: block; }
+      .tools { margin-top: 13px; }
+      .search { width: 100%; }
+      .grid { grid-template-columns: 1fr; }
+      .code-row { width: 100%; }
+      .share-panel { padding: 17px; }
+      .header-right .btn { padding: 10px 12px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div class="brand"><div class="brand-mark">✳</div> Mi Aula</div>
+      <div class="header-right">
+        <span class="user-label">Mi espacio escolar</span>
+        <div class="avatar">M</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Tu rincón para crear</div>
+        <h1>Proyectos que<br>crecen juntos.</h1>
+        <p>Guarda tus trabajos escolares en un solo lugar y comparte el código de tu aula con tus amigos.</p>
+        <div class="actions">
+          <button class="btn primary" id="addBtn">＋ Añadir proyecto</button>
+          <button class="btn secondary" id="joinBtn">Entrar con código</button>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">📚✏️</div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>Mis proyectos</h2>
+          <p id="projectCount">Tus ideas y trabajos, siempre a mano.</p>
+        </div>
+        <div class="tools">
+          <input class="search" id="search" type="search" placeholder="⌕  Buscar proyectos…" aria-label="Buscar proyectos">
+        </div>
+      </div>
+
+      <div class="grid" id="projectGrid" aria-live="polite">
+        <div class="empty" id="emptyState">No encontramos proyectos. ¡Añade el primero!</div>
+      </div>
+    </section>
+
+    <section class="share-panel">
+      <div class="share-copy">
+        <div class="share-icon">🔑</div>
+        <div>
+          <strong>Tu código para compartir</strong>
+          <span>Compártelo para que tus amigos encuentren el aula.</span>
+        </div>
+      </div>
+      <div class="code-row">
+        <span class="code" id="roomCode">AULA24</span>
+        <button class="btn secondary small" id="copyBtn">Copiar código</button>
+      </div>
+    </section>
+
+    <p class="note">
+      Tus proyectos se guardan en este navegador. Para que el código permita verlos desde otros dispositivos, esta página necesita conectarse a un servicio de almacenamiento compartido.
+    </p>
+  </main>
+
+  <dialog id="projectDialog">
+    <form class="modal" id="projectForm">
+      <div class="modal-head">
+        <div>
+          <h2>Nuevo proyecto</h2>
+          <p>Guarda los detalles de tu trabajo.</p>
+        </div>
+        <button type="button" class="close" data-close aria-label="Cerrar">×</button>
+      </div>
+
+      <div class="field">
+        <label for="title">Nombre del proyecto</label>
+        <input id="title" required maxlength="70" placeholder="Ej. El sistema solar">
+      </div>
+
+      <div class="field">
+        <label for="subject">Materia</label>
+        <select id="subject">
+          <option>Ciencias</option>
+          <option>Matemáticas</option>
+          <option>Lengua</option>
+          <option>Historia</option>
+          <option>Arte</option>
+          <option>Otro</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="description">Descripción</label>
+        <textarea id="description" maxlength="240" placeholder="¿De qué trata tu proyecto?"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="dueDate">Fecha de entrega (opcional)</label>
+        <input id="dueDate" type="date">
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn secondary" type="button" data-close>Cancelar</button>
+        <button class="btn primary" type="submit">Guardar proyecto</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="joinDialog">
+    <form class="modal" id="joinForm">
+      <div class="modal-head">
+        <div>
+          <h2>Entrar al aula</h2>
+          <p>Escribe el código que te pasó tu amigo.</p>
+        </div>
+        <button type="button" class="close" data-close aria-label="Cerrar">×</button>
+      </div>
+
+      <div class="field">
+        <label for="joinCode">Código del aula</label>
+        <input id="joinCode" required maxlength="12" placeholder="Ej. AULA24" autocomplete="off">
+      </div>
+
+      <div class="join-result" id="joinResult"></div>
+
+      <div class="modal-actions">
+        <button class="btn secondary" type="button" data-close>Cancelar</button>
+        <button class="btn primary" type="submit">Continuar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    const STORAGE_KEY = "mi-aula-proyectos-v1";
+
+    const defaults = [
+      {
+        title: "El sistema solar",
+        subject: "Ciencias",
+        description: "Una maqueta de los planetas y sus órbitas alrededor del Sol.",
+        dueDate: "",
+        emoji: "🪐",
+        created: Date.now() - 86400000 * 2
+      },
+      {
+        title: "Fracciones en la cocina",
+        subject: "Matemáticas",
+        description: "Aprendiendo fracciones con recetas y medidas.",
+        dueDate: "",
+        emoji: "🥧",
+        created: Date.now() - 86400000 * 5
+      },
+      {
+        title: "Mi árbol familiar",
+        subject: "Historia",
+        description: "Una pequeña investigación sobre nuestras raíces.",
+        dueDate: "",
+        emoji: "🌳",
+        created: Date.now() - 86400000 * 8
+      }
+    ];
+
+    let projects;
+    try {
+      projects = JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? defaults;
+    } catch {
+      projects = defaults;
+    }
+
+    const icons = {
+      Ciencias: "🔬",
+      Matemáticas: "📐",
+      Lengua: "📖",
+      Historia: "🏛️",
+      Arte: "🎨",
+      Otro: "💡"
+    };
+
+    const grid = document.getElementById("projectGrid");
+    const empty = document.getElementById("emptyState");
+
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+      render();
+    }
+
+    function render(query = "") {
+      [...grid.querySelectorAll(".card")].forEach(el => el.remove());
+
+      const q = query.trim().toLocaleLowerCase("es");
+      const shown = projects.filter(project =>
+        (project.title + " " + project.subject + " " + project.description)
+          .toLocaleLowerCase("es")
+          .includes(q)
+      );
+
+      empty.style.display = shown.length ? "none" : "block";
+      empty.textContent = projects.length
+        ? "No hay proyectos que coincidan con tu búsqueda."
+        : "No encontramos proyectos. ¡Añade el primero!";
+
+      shown.forEach(project => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const top = document.createElement("div");
+        top.className = "card-top";
+
+        const icon = document.createElement("div");
+        icon.className = "icon";
+        icon.textContent = project.emoji || icons[project.subject] || "💡";
+
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = project.subject;
+        top.append(icon, tag);
+
+        const title = document.createElement("h3");
+        title.textContent = project.title;
+
+        const description = document.createElement("p");
+        description.textContent = project.description || "Sin descripción todavía.";
+
+        const foot = document.createElement("div");
+        foot.className = "card-foot";
+
+        const date = document.createElement("span");
+        date.textContent = project.dueDate
+          ? "Entrega: " + new Date(project.dueDate + "T12:00:00").toLocaleDateString("es")
+          : "Proyecto escolar";
+
+        const remove = document.createElement("button");
+        remove.className = "dots";
+        remove.type = "button";
+        remove.setAttribute("aria-label", "Eliminar " + project.title);
+        remove.textContent = "···";
+        remove.addEventListener("click", () => {
+          if (confirm("¿Eliminar “" + project.title + "”?")) {
+            projects = projects.filter(item => item.id !== project.id);
+            save();
+          }
+        });
+
+        foot.append(date, remove);
+        card.append(top, title, description, foot);
+        grid.insertBefore(card, empty);
+      });
+
+      document.getElementById("projectCount").textContent =
+        `${projects.length} ${projects.length === 1 ? "proyecto guardado" : "proyectos guardados"} en este navegador.`;
+    }
+
+    function toast(message) {
+      const element = document.getElementById("toast");
+      element.textContent = message;
+      element.classList.add("show");
+      setTimeout(() => element.classList.remove("show"), 2300);
+    }
+
+    const projectDialog = document.getElementById("projectDialog");
+    const joinDialog = document.getElementById("joinDialog");
+
+    document.getElementById("addBtn").onclick = () => projectDialog.showModal();
+
+    document.getElementById("joinBtn").onclick = () => {
+      document.getElementById("joinResult").style.display = "none";
+      joinDialog.showModal();
+    };
+
+    document.querySelectorAll("[data-close]").forEach(button => {
+      button.onclick = () => button.closest("dialog").close();
+    });
+
+    document.getElementById("projectForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const subject = document.getElementById("subject").value;
+      projects.unshift({
+        id: crypto.randomUUID?.() || String(Date.now()),
+        title: document.getElementById("title").value.trim(),
+        subject,
+        description: document.getElementById("description").value.trim(),
+        dueDate: document.getElementById("dueDate").value,
+        emoji: icons[subject],
+        created: Date.now()
+      });
+
+      save();
+      event.target.reset();
+      projectDialog.close();
+      toast("Proyecto guardado");
+    });
+
+    document.getElementById("search").addEventListener("input", event => {
+      render(event.target.value);
+    });
+
+    document.getElementById("copyBtn").onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(
+          document.getElementById("roomCode").textContent
+        );
+        toast("Código copiado");
+      } catch {
+        toast("Tu código es AULA24");
+      }
+    };
+
+    document.getElementById("joinForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const code = document.getElementById("joinCode").value.trim().toUpperCase();
+      const result = document.getElementById("joinResult");
+
+      result.style.display = "block";
+      result.textContent = code === "AULA24"
+        ? "¡Código reconocido! Esta demostración guarda los proyectos solo en este navegador. Para verlos en el dispositivo de tu amigo hace falta conectar un servicio compartido."
+        : "No encontramos ese código en esta demostración. Prueba AULA24.";
+    });
+
+    render();
+  </script>
+</body>
+</html>
